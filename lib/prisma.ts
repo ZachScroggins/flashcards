@@ -6,6 +6,15 @@ import { PrismaClient } from '@prisma/client';
 // Learn more:
 // https://pris.ly/d/help/next-js-best-practices
 
+// fix typescript error
+declare global {
+  namespace NodeJS {
+    interface Global {
+      prisma: any;
+    }
+  }
+}
+
 let prisma: PrismaClient;
 
 if (process.env.NODE_ENV === 'production') {
