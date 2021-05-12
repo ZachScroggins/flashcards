@@ -145,7 +145,7 @@ const Mutation = objectType({
           data: {
             title,
             content,
-            published: false,
+            published: true,
             author: {
               connect: { email: authorEmail },
             },

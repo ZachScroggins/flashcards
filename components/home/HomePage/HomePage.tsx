@@ -1,7 +1,40 @@
 import Head from 'next/head';
 import { Footer } from 'components/common';
+import { useQuery } from 'react-query';
+import { request, gql } from 'graphql-request';
+import { useFeedQuery } from 'lib/generated';
+import client from 'lib/gql-request-client';
+import Link from 'next/link';
+
+const endpoint = 'http://localhost:3000/api/graphql';
 
 const HomePage = () => {
+  // const { data } = useQuery('feed', async () => {
+  //   const { feed } = await request(
+  //     endpoint,
+  //     gql`
+  //       query {
+  //         feed {
+  //           id
+  //           title
+  //           content
+  //           published
+  //           author {
+  //             id
+  //             name
+  //             email
+  //           }
+  //         }
+  //       }
+  //     `
+  //   );
+  //   return feed;
+  // });
+
+  const { data } = useFeedQuery(client);
+
+  console.log(data);
+
   return (
     <div className='flex flex-col items-center justify-center min-h-screen py-2'>
       <Head>
@@ -21,6 +54,12 @@ const HomePage = () => {
           <code className='p-3 font-mono text-lg bg-gray-100 rounded-md'>
             pages/index.js
           </code>
+        </p>
+
+        <p className='mt-3 text-2xl'>
+          <Link href='/test'>
+            <a>Test Page</a>
+          </Link>
         </p>
 
         <div className='flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full'>
