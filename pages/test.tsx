@@ -1,40 +1,14 @@
 import Head from 'next/head';
-import { Footer } from 'components/common';
-import { useQuery, useQueryClient } from 'react-query';
-import { request, gql } from 'graphql-request';
+import Link from 'next/link';
+import { useQueryClient } from 'react-query';
+import client from 'lib/graphql/gql-request-client';
 import {
   useCreateDraftMutationMutation,
   useDeletePostMutation,
   useFeedQuery,
 } from 'lib/generated';
-import client from 'lib/gql-request-client';
-import Link from 'next/link';
 
-const endpoint = 'http://localhost:3000/api/graphql';
-
-const HomePage = () => {
-  // const { data } = useQuery('feed', async () => {
-  //   const { feed } = await request(
-  //     endpoint,
-  //     gql`
-  //       query {
-  //         feed {
-  //           id
-  //           title
-  //           content
-  //           published
-  //           author {
-  //             id
-  //             name
-  //             email
-  //           }
-  //         }
-  //       }
-  //     `
-  //   );
-  //   return feed;
-  // });
-
+const Test = () => {
   const { data, status, error } = useFeedQuery(client);
 
   const queryClient = useQueryClient();
@@ -52,30 +26,31 @@ const HomePage = () => {
   return (
     <div className='flex flex-col items-center justify-center min-h-screen py-2'>
       <Head>
-        <title>Flashcards</title>
+        <title>Flash</title>
       </Head>
 
       <main className='flex flex-col items-center justify-center flex-1 px-20 text-center'>
         <h1 className='text-6xl font-bold'>Test</h1>
 
         <Link href='/'>
-          <a>Home</a>
+          <a className='text-2xl text-blue-700 hover:underline'>Home</a>
         </Link>
 
-        <div>
+        <div className='mt-4'>
           {status === 'loading' ? (
             <p>Loading...</p>
           ) : status === 'error' ? (
             <p>Error: {error.message}</p>
           ) : (
             <>
-              <div>
+              <ul className='space-y-1'>
                 {data.feed.map(post => {
                   return (
-                    <p key={post.id}>
-                      {post.title} <span>{post.id}</span>{' '}
+                    <li key={post.id}>
+                      {post.id}. <span>{post.title} |</span>{' '}
                       <span>
                         <button
+                          className='underline'
                           onClick={() =>
                             data.feed && mutate({ postId: `${post.id}` })
                           }
@@ -83,12 +58,13 @@ const HomePage = () => {
                           Delete
                         </button>
                       </span>
-                    </p>
+                    </li>
                   );
                 })}
-              </div>
-              <div className='pt-2'>
+              </ul>
+              <div className='mt-4'>
                 <button
+                  className='px-4 py-2 text-white bg-blue-600 rounded'
                   onClick={() =>
                     data.feed &&
                     create({
@@ -105,10 +81,8 @@ const HomePage = () => {
           )}
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 };
 
-export default HomePage;
+export default Test;

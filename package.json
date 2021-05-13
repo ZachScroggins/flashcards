@@ -49,5 +49,8 @@
     "prisma": "^2.22.1",
     "tailwindcss": "^2.1.1",
     "typescript": "^4.2.4"
+  },
+  "prisma": {
+    "schema": "lib/prisma/schema.prisma"
   }
 }
