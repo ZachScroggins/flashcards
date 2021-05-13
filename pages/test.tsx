@@ -9,9 +9,9 @@ import {
 } from 'lib/generated';
 
 const Test = () => {
-  const { data, status, error } = useFeedQuery(client);
-
   const queryClient = useQueryClient();
+
+  const { data, status, error } = useFeedQuery(client);
 
   const { mutate } = useDeletePostMutation(client, {
     onSuccess: () => queryClient.invalidateQueries('Feed'),
