@@ -64,6 +64,13 @@ const Query = objectType({
       },
     });
 
+    t.list.field('users', {
+      type: 'User',
+      resolve: (_parent, _args) => {
+        return prisma.user.findMany();
+      },
+    });
+
     t.list.field('feed', {
       type: 'Post',
       resolve: (_parent, _args) => {

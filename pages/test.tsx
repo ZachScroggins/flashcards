@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { signIn, signOut, useSession } from 'next-auth/client';
 import { useQueryClient } from 'react-query';
 import client from 'lib/graphql/gql-request-client';
 import {
@@ -9,6 +10,8 @@ import {
 } from 'lib/generated';
 
 const Test = () => {
+  const [session, loading] = useSession();
+
   const queryClient = useQueryClient();
 
   const { data, status, error } = useFeedQuery(client);
@@ -21,7 +24,8 @@ const Test = () => {
     onSuccess: () => queryClient.invalidateQueries('Feed'),
   });
 
-  console.log(data);
+  // console.log(data);
+  console.log(session);
 
   return (
     <div className='flex flex-col items-center justify-center min-h-screen py-2'>
@@ -35,6 +39,30 @@ const Test = () => {
         <Link href='/'>
           <a className='text-2xl text-blue-700 hover:underline'>Home</a>
         </Link>
+
+        {!session && (
+          <>
+            Not signed in <br />
+            <button className='text-blue-700' onClick={() => signIn()}>
+              Sign in
+            </button>
+          </>
+        )}
+        {session && (
+          <>
+            <span className='text-xl'>
+              <img
+                src={session.user?.image}
+                alt='profile pic'
+                className='inline w-10 h-10 mr-2 rounded-full'
+              />
+              Signed in as {session.user?.name} <br />
+            </span>
+            <button className='text-blue-700' onClick={() => signOut()}>
+              Sign out
+            </button>
+          </>
+        )}
 
         <div className='mt-4'>
           {status === 'loading' ? (

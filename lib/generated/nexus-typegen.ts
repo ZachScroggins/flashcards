@@ -87,6 +87,7 @@ export interface NexusGenFieldTypes {
     feed: Array<NexusGenRootTypes['Post'] | null> | null; // [Post]
     filterPosts: Array<NexusGenRootTypes['Post'] | null> | null; // [Post]
     post: NexusGenRootTypes['Post'] | null; // Post
+    users: Array<NexusGenRootTypes['User'] | null> | null; // [User]
   }
   User: { // field return type
     email: string | null; // String
@@ -115,6 +116,7 @@ export interface NexusGenFieldTypeNames {
     feed: 'Post'
     filterPosts: 'Post'
     post: 'Post'
+    users: 'User'
   }
   User: { // field return type name
     email: 'String'
