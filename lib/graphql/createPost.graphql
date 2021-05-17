@@ -1,9 +1,9 @@
 mutation CreateDraftMutation(
   $title: String!
   $content: String
-  $authorEmail: String!
+  $authorId: Int!
 ) {
-  createDraft(title: $title, content: $content, authorEmail: $authorEmail) {
+  createDraft(title: $title, content: $content, authorId: $authorId) {
     id
     title
     content

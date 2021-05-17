@@ -129,7 +129,7 @@ export interface NexusGenFieldTypeNames {
 export interface NexusGenArgTypes {
   Mutation: {
     createDraft: { // args
-      authorEmail?: string | null; // String
+      authorId?: number | null; // Int
       content?: string | null; // String
       title: string; // String!
     }

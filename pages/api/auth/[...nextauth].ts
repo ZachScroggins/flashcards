@@ -25,5 +25,24 @@ export default NextAuth({
   session: { jwt: true },
 
   // JWT config
-  jwt: { secret: process.env.NEXT_AUTH_JWT_SECRET },
+  jwt: {
+    secret: process.env.NEXT_AUTH_JWT_SECRET,
+    signingKey: process.env.JWT_SIGNING_PRIVATE_KEY,
+  },
+
+  // Callbacks
+  callbacks: {
+    jwt: async (token, user, account, profile, isNewUser) => {
+      const isSignIn = user ? true : false;
+
+      // add user id to token on sign in
+      if (isSignIn) token.id = user?.id ?? null;
+
+      return token;
+    },
+    session: async (session, token) => {
+      session.user.id = token?.id ?? null;
+      return session;
+    },
+  },
 });

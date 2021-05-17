@@ -1,6 +1,7 @@
 import { DateTimeResolver } from 'graphql-scalars';
 import {
   asNexusMethod,
+  intArg,
   makeSchema,
   nonNull,
   nullable,
@@ -144,16 +145,16 @@ const Mutation = objectType({
       args: {
         title: nonNull(stringArg()),
         content: stringArg(),
-        authorEmail: stringArg(),
+        authorId: intArg(),
       },
-      resolve: (_, { title, content, authorEmail }, ctx) => {
+      resolve: (_, { title, content, authorId }, ctx) => {
         return prisma.post.create({
           data: {
             title,
             content,
             published: true,
             author: {
-              connect: { email: authorEmail },
+              connect: { id: authorId },
             },
           },
         });

@@ -43,7 +43,7 @@ export type MutationDeletePostArgs = {
 export type MutationCreateDraftArgs = {
   title: Scalars['String'];
   content?: Maybe<Scalars['String']>;
-  authorEmail?: Maybe<Scalars['String']>;
+  authorId?: Maybe<Scalars['Int']>;
 };
 
 
@@ -63,6 +63,7 @@ export type Post = {
 export type Query = {
   __typename?: 'Query';
   post?: Maybe<Post>;
+  users?: Maybe<Array<Maybe<User>>>;
   feed?: Maybe<Array<Maybe<Post>>>;
   drafts?: Maybe<Array<Maybe<Post>>>;
   filterPosts?: Maybe<Array<Maybe<Post>>>;
@@ -89,7 +90,7 @@ export type User = {
 export type CreateDraftMutationMutationVariables = Exact<{
   title: Scalars['String'];
   content?: Maybe<Scalars['String']>;
-  authorEmail: Scalars['String'];
+  authorId: Scalars['Int'];
 }>;
 
 
@@ -135,8 +136,8 @@ export type FeedQuery = (
 
 
 export const CreateDraftMutationDocument = `
-    mutation CreateDraftMutation($title: String!, $content: String, $authorEmail: String!) {
-  createDraft(title: $title, content: $content, authorEmail: $authorEmail) {
+    mutation CreateDraftMutation($title: String!, $content: String, $authorId: Int!) {
+  createDraft(title: $title, content: $content, authorId: $authorId) {
     id
     title
     content
