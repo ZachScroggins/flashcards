@@ -1,3 +1,3 @@
-# Flashcards
+# Flash
 
 Flashcards web app
