@@ -10,7 +10,7 @@ import {
 
 const ExplorePage = () => {
   const { data, status, error } = useFeedQuery(client);
-
+  console.log('ASDFASDF ', process.env.NEXT_PUBLIC_GRAPHQL_API);
   return (
     <>
       <Head>
