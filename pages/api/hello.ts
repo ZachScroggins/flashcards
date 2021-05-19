@@ -21,10 +21,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   console.log(`GITHUB_CLIENT_ID: ${process.env.GITHUB_CLIENT_ID}`);
   console.log(`GITHUB_CLIENT_SECRET: ${process.env.GITHUB_CLIENT_SECRET}\n`);
 
-  console.log(
-    `NEXT_PUBLIC_GRAPHQL_API: ${process.env.NEXT_PUBLIC_GRAPHQL_API}`
-  );
-
   switch (method) {
     case 'GET': {
       res.status(200).json({ message: 'Howdy 👋' });
