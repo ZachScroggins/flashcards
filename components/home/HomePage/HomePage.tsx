@@ -50,7 +50,7 @@ const HomePage = () => {
                 <div>
                   <a href='#' className='inline-flex space-x-4'>
                     <span className='rounded bg-rose-50 px-2.5 py-1 text-xs font-semibold text-rose-500 tracking-wide uppercase'>
-                      What's new
+                      What's neww
                     </span>
                     <span className='inline-flex items-center space-x-1 text-sm font-medium text-rose-500'>
                       <span>Just shipped version 0.1.0</span>
