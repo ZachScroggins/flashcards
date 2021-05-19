@@ -1,3 +1,3 @@
 # Flash
 
-Flashcards web app
+Flashcards web app.
