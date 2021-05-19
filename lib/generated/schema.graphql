@@ -33,6 +33,7 @@ type Query {
 type User {
   email: String
   id: Int
+  image: String
   name: String
   posts: [Post]
 }

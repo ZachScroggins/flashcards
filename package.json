@@ -11,8 +11,9 @@
     "cypress:open": "cypress open",
     "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
     "generate:prisma": "prisma generate --schema=./lib/prisma/schema.prisma",
-    "generate:nexus": "ts-node --transpile-only -P nexus.tsconfig.json pages/api",
-    "graphql:codegen": "graphql-codegen --config codegen.yml"
+    "generate:nexus": "ts-node --transpile-only -P ./nexus.tsconfig.json ./lib/graphql/schema.ts",
+    "graphql:codegen": "graphql-codegen --config codegen.yml",
+    "ngrok": "ngrok http 3000"
   },
   "dependencies": {
     "@headlessui/react": "^1.1.1",
@@ -50,6 +51,7 @@
     "postcss": "^8.1.10",
     "prisma": "^2.22.1",
     "tailwindcss": "^2.1.1",
+    "ts-node": "^9.1.1",
     "typescript": "^4.2.4"
   },
   "prisma": {

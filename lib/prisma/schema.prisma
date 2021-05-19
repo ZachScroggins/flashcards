@@ -7,13 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// model User {
-//   email String  @unique
-//   id    Int     @id @default(autoincrement())
-//   name  String?
-//   posts Post[]
-// }
-
 model Post {
   authorId  Int?
   content   String?
@@ -23,52 +16,18 @@ model Post {
   author    User?   @relation(fields: [authorId], references: [id])
 }
 
-// model accounts {
-//   id                   Int       @id @default(autoincrement())
-//   compound_id          String    @unique @db.VarChar(255)
-//   user_id              Int
-//   provider_type        String    @db.VarChar(255)
-//   provider_id          String    @db.VarChar(255)
-//   provider_account_id  String    @db.VarChar(255)
-//   refresh_token        String?
-//   access_token         String?
-//   access_token_expires DateTime? @db.Timestamptz(6)
-//   created_at           DateTime  @default(now()) @db.Timestamptz(6)
-//   updated_at           DateTime  @default(now()) @db.Timestamptz(6)
+model User {
+  id            Int       @default(autoincrement()) @id
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime? @map(name: "email_verified")
+  image         String?
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @default(now()) @map(name: "updated_at")
+  posts Post[]
 
-//   @@index([provider_account_id], name: "provider_account_id")
-//   @@index([provider_id], name: "provider_id")
-//   @@index([user_id], name: "user_id")
-// }
-
-// model sessions {
-//   id            Int      @id @default(autoincrement())
-//   user_id       Int
-//   expires       DateTime @db.Timestamptz(6)
-//   session_token String   @unique @db.VarChar(255)
-//   access_token  String   @unique @db.VarChar(255)
-//   created_at    DateTime @default(now()) @db.Timestamptz(6)
-//   updated_at    DateTime @default(now()) @db.Timestamptz(6)
-// }
-
-// model users {
-//   id             Int       @id @default(autoincrement())
-//   name           String?   @db.VarChar(255)
-//   email          String?   @unique @db.VarChar(255)
-//   email_verified DateTime? @db.Timestamptz(6)
-//   image          String?
-//   created_at     DateTime  @default(now()) @db.Timestamptz(6)
-//   updated_at     DateTime  @default(now()) @db.Timestamptz(6)
-// }
-
-// model verification_requests {
-//   id         Int      @id @default(autoincrement())
-//   identifier String   @db.VarChar(255)
-//   token      String   @unique @db.VarChar(255)
-//   expires    DateTime @db.Timestamptz(6)
-//   created_at DateTime @default(now()) @db.Timestamptz(6)
-//   updated_at DateTime @default(now()) @db.Timestamptz(6)
-// }
+  @@map(name: "users")
+}
 
 model Account {
   id                 Int       @default(autoincrement()) @id
@@ -100,19 +59,6 @@ model Session {
   updatedAt    DateTime @default(now()) @map(name: "updated_at")
 
   @@map(name: "sessions")
-}
-
-model User {
-  id            Int       @default(autoincrement()) @id
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime? @map(name: "email_verified")
-  image         String?
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @default(now()) @map(name: "updated_at")
-  posts Post[]
-
-  @@map(name: "users")
 }
 
 model VerificationRequest {

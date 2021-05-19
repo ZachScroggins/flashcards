@@ -84,6 +84,7 @@ export type User = {
   id?: Maybe<Scalars['Int']>;
   name?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
   posts?: Maybe<Array<Maybe<Post>>>;
 };
 
@@ -129,7 +130,7 @@ export type FeedQuery = (
     & Pick<Post, 'id' | 'title' | 'content' | 'published'>
     & { author?: Maybe<(
       { __typename?: 'User' }
-      & Pick<User, 'id' | 'name' | 'email'>
+      & Pick<User, 'id' | 'name' | 'email' | 'image'>
     )> }
   )>>> }
 );
@@ -189,6 +190,7 @@ export const FeedDocument = `
       id
       name
       email
+      image
     }
   }
 }

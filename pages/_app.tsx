@@ -6,6 +6,7 @@ import { Hydrate } from 'react-query/hydration';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
 import 'styles/globals.css';
+import { Layout } from 'components/common';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const queryClientRef = useRef(null);
@@ -17,8 +18,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     <Provider session={pageProps.session}>
       <QueryClientProvider client={queryClientRef.current}>
         <Hydrate state={pageProps.dehydratedState}>
-          <Component {...pageProps} />
-          <ReactQueryDevtools initialIsOpen={false} />
+          <Layout>
+            <Component {...pageProps} />
+            {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+          </Layout>
         </Hydrate>
       </QueryClientProvider>
     </Provider>

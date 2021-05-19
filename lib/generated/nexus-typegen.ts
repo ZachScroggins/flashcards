@@ -54,6 +54,7 @@ export interface NexusGenObjects {
   User: { // root type
     email?: string | null; // String
     id?: number | null; // Int
+    image?: string | null; // String
     name?: string | null; // String
   }
 }
@@ -92,6 +93,7 @@ export interface NexusGenFieldTypes {
   User: { // field return type
     email: string | null; // String
     id: number | null; // Int
+    image: string | null; // String
     name: string | null; // String
     posts: Array<NexusGenRootTypes['Post'] | null> | null; // [Post]
   }
@@ -121,6 +123,7 @@ export interface NexusGenFieldTypeNames {
   User: { // field return type name
     email: 'String'
     id: 'Int'
+    image: 'String'
     name: 'String'
     posts: 'Post'
   }

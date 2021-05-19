@@ -8,6 +8,7 @@ query Feed {
       id
       name
       email
+      image
     }
   }
 }
