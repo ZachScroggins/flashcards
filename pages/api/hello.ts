@@ -5,6 +5,8 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { method } = req;
 
+  console.log(process.env.DATABASE_URL);
+
   switch (method) {
     case 'GET': {
       res.status(200).json({ message: 'Howdy 👋' });
