@@ -19,8 +19,6 @@ const DashboardPage = () => {
     onSuccess: () => queryClient.invalidateQueries('Feed'),
   });
 
-  // console.log(data);
-
   return (
     <>
       <Head>

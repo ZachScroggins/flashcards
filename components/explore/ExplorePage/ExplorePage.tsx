@@ -10,7 +10,6 @@ import {
 
 const ExplorePage = () => {
   const { data, status, error } = useFeedQuery(client);
-  console.log(client);
 
   return (
     <>
