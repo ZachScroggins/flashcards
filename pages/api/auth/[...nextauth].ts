@@ -36,7 +36,7 @@ export default NextAuth({
     jwt: async (token, user, account, profile, isNewUser) => {
       const isSignIn = user ? true : false;
 
-      // add user id to token on sign in
+      // Add user id to token on sign in
       if (isSignIn) token.id = user?.id ?? null;
 
       return token;
